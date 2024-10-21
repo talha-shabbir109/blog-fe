@@ -1,5 +1,51 @@
 /* o-navbar */
 
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;0,900;1,200..900;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,900;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Source+Sans+3:ital,wght@0,200..900;0,900;1,200..900;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    font-family: "Work Sans", sans-serif;
+}
+
+footer{
+font-family: "Plus Jakarta Sans", sans-serif;
+
+}
+
+.work-sans-h1 {
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 40px;
+}
+
+.work-sans-h3 {
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 40px;
+}
+
+.source-serif-pro-quote {
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: italic;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+}
+
+.work_san{
+    font-family: "Work Sans", sans-serif;
+}
+
+
+
 
 .bg-dark{
     background: #181A2A !important;
@@ -84,9 +130,9 @@ header {
 }
 
 .mask {
-    height: 600px; 
-    background-color: rgba(0, 0, 0, 0.6); 
-    background-image: url('./assests/media/Image.svg');
+    height: 600px;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-image: url('../assests/media/Image.svg');
     background-size: cover;
     border-radius: 12px;
 
@@ -110,12 +156,12 @@ header {
 
 .card-design {
     background-color: #181A2A;
-    
+
 }
 
 .card-blog {
     background-color: #ececec00;
-    
+
 }
 
 .badge {
@@ -187,7 +233,7 @@ header {
     font-weight: 400;
     line-height: 2rem;
     margin-bottom: 30px;
-    
+
 }
 
 
@@ -228,53 +274,76 @@ header {
     font-size: 15px;
     font-weight: 700;
 
+
 }
 
 
 .form-control{
     background: #242535;
     border: none;
+    color: white;
+    }
+
+/* .... */
+
+/* Card styling */
+.newsletter-card {
+    background-color: #242535; /* Dark background for the card */
+    border-radius: 8px; /* Rounded corners for the card */
+    padding: 20px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .container {
-    background-color: #fff;
-    border-radius: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .25);
-    position: relative;
-    overflow: hidden;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
-}
-.container p {
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.3px;
-    margin: 20px 0;
+/* Input field styling */
+.email-input {
+    background-color: #1E2135; /* Dark background for the input */
+    padding-right: 40px; /* Adjust padding for the right icon */
+    border: 1px solid #35394B; /* Slight border around input */
+    border-radius: 5px; /* Rounded corners for input */
+    height: 50px; /* Input height */
+    color: white; /* Text color inside the input */
 }
 
-.container span {
-    font-size: 12px;
-} */
+input[type='search']{
+    height: 40px; /* Input height */
+}
+
+/* Placeholder styling */
+.form-control::placeholder {
+    color: #6c757d; /* Gray color for placeholder text */
+    opacity: 1; /* Ensures placeholder text is fully visible */
+}
+
+/* SVG icon inside the input */
+.email-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Position the icon to the right */
+    transform: translateY(-50%); /* Vertically center the icon */
+    width: 20px; /* Adjust icon width */
+    height: auto;
+}
+
+/* Subscribe button styling */
+.btn-primary {
+    background-color: #5865F2; /* Blue color for the button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners for the button */
+    height: 50px; /* Button height */
+    font-size: 16px; /* Text size */
+}
+
+.btn-primary:hover {
+    background-color: #4753c9; /* Darker shade of blue on hover */
+}
+
+/* Card text styling */
+.card-text {
+    color: #6c757d; /* Gray color for the text below the title */
+}
+
+/* Card title styling */
+.card-title {
+    font-size: 1.25rem; /* Size for the title */
+    color: white; /* White color for the title */
+}
+
