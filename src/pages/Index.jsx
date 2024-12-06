@@ -5,6 +5,7 @@ import AdBlock from '../components/AdBlock'
 import PostCards from '../components/PostCards'
 import { autherCard1 } from '../components/Images'
 
+
 function Index() {
   return (
     <>
