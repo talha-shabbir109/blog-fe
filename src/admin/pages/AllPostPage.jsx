@@ -7,11 +7,10 @@ function AllPostPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        // Fetch posts from the backend
+    // Fetch posts from the backend
+    const fetchPosts = () => {
         axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/posts`)
             .then((response) => {
-                console.log("Posts:", response.data.posts); // Verify the structure
                 setPosts(response.data.posts);
                 setLoading(false);
             })
@@ -20,22 +19,50 @@ function AllPostPage() {
                 setError('Failed to fetch posts');
                 setLoading(false);
             });
-    }, []);
+    };
 
     useEffect(() => {
+        fetchPosts(); // Initial fetch of posts
+    }, []);
+
+    // Initialize DataTable once posts are loaded
+    useEffect(() => {
         if (posts.length > 0) {
-
-            // Initialize DataTable with additional configuration
             const table = new DataTable('#allPosts', {
-                paging: true, // Enables pagination
-                searching: true, // Enables search box
-                ordering: true, // Enables sorting
-                info: true, // Shows the table info (e.g., "Showing 1 to 10 of 20 entries")
+                paging: true,
+                searching: true,
+                ordering: true,
+                info: true,
             });
-            return () => table.destroy();
 
+            // Cleanup DataTable instance when component is unmounted or posts change
+            return () => table.destroy();
         }
-    }, [posts]);
+    }, [posts]);  // Re-run effect whenever posts state changes
+
+    // Delete a post
+    const handleDelete = (postId) => {
+        // Show confirmation prompt
+        const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+        if (!confirmDelete) return;
+
+        // Call API to delete post
+        axios.delete(`${process.env.REACT_APP_BACKEND_API_URL}/posts/${postId}`)
+            .then((response) => {
+                alert('Post deleted successfully');
+                // Refresh the page after deletion and stay on the same page
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error('Error deleting post:', error);
+                alert('Error deleting post');
+            });
+    };
+
+    const stripHtmlTags = (html) => {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        return doc.body.textContent || doc.body.innerText || '';
+    };
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
@@ -47,8 +74,9 @@ function AllPostPage() {
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Author</th>
                         <th>Description</th>
+                        <th>Category</th>
+                        <th>Author</th>
                         <th>Created At</th>
                         <th className="text-center">Action</th>
                     </tr>
@@ -57,15 +85,21 @@ function AllPostPage() {
                     {posts.map((post) => (
                         <tr key={post._id}>
                             <td>{post.title || 'N/A'}</td>
-                            <td>{post.authorName || 'N/A'}</td>
-                            <td>{post.description || 'N/A'}</td>
+                            <td>{stripHtmlTags(post.postBody) || 'N/A'}</td>
+                            <td>{post.category?.name || 'N/A'}</td> {/* Assuming category has a name field */}
+                            <td>{post.authorName || 'N/A'}</td> {/* Check if authorName is available */}
                             <td>{post.createdAt ? new Date(post.createdAt).toLocaleDateString() : 'N/A'}</td>
                             <td className="text-center">
                                 <span className="d-flex gap-3 badge badge-success small justify-content-center">
                                     <a type="button" className="text-white" href="#">
                                         <i className="bi bi-pencil-square"></i>
                                     </a>
-                                    <a type="button" className="text-white" href="#">
+                                    <a
+                                        type="button"
+                                        className="text-white"
+                                        href="#"
+                                        onClick={() => handleDelete(post._id)} // Handle delete click
+                                    >
                                         <i className="bi bi-trash3-fill"></i>
                                     </a>
                                     <a type="button" className="text-white" href="#">
@@ -79,8 +113,9 @@ function AllPostPage() {
                 <tfoot>
                     <tr>
                         <th>Title</th>
-                        <th>Author</th>
                         <th>Description</th>
+                        <th>Category</th>
+                        <th>Author</th>
                         <th>Created At</th>
                         <th className="text-center">Action</th>
                     </tr>

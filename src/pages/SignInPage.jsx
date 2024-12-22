@@ -1,22 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import SignIn from '../components/SignIn'
-import FooterNavBar from '../components/FooterNavBar'
+import SignIn from '../components/SignIn';
+import FooterNavBar from '../components/FooterNavBar';
 
 function SignInPage() {
     const navigate = useNavigate();
 
-    const token = sessionStorage.getItem('authToken');
-
-    // Redirect to /admin if token exists
     React.useEffect(() => {
+        const token = sessionStorage.getItem('authToken');
         if (token) {
             navigate('/admin');
         }
-    }, [token, navigate]);
+    }, [navigate]); // Sirf navigate ko dependency mein rakhein
 
     return (
-        <div className='bg-dark'>
+        <div className="bg-dark">
             <SignIn />
             <FooterNavBar />
         </div>

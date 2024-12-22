@@ -65,7 +65,11 @@ footer {
 .t2c2 {
 	background-color: aquamarine;
 }
-
+/* ................................................ */
+.dropdown-item:hover {
+	background-color: #52575c; /* Hover color */
+	color: white; /* Optional: Change text color on hover */
+}
 /* .h-c1 {
     color: #4B6BFB;
     background: #4B6BFB0D;
@@ -562,7 +566,7 @@ div.dt-container .dt-search input {
 
 .dropdown-menu-dark {
 	background-color: #343a40; /* Matches dark theme */
-	color: #ffffff;
+	color: #000000;
 }
 
 .dropdown-item.active {

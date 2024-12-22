@@ -14,7 +14,7 @@ function SideBar() {
     };
 
     return (
-        <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark-mat ">
+        <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark-mat">
             <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <ul
                     className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start flex-wrap"
@@ -31,57 +31,24 @@ function SideBar() {
                             <span className="ms-1 d-none d-sm-inline">Dashboard</span>
                         </Link>
 
-                        {/* All Posts */}
-                        <Link
-                            to="/admin/posts"
-                            className={`nav-link align-middle p-2 ${activeLink === "/admin/posts" ? "active" : ""}`}
-                            onClick={() => handleLinkClick("/admin/posts")}
-                        >
-                            <i className="fs-4 bi-card-heading" />{" "}
-                            <span className="ms-1 d-none d-sm-inline">All Posts</span>
-                        </Link>
-
-                        {/* Categories */}
-                        <div className={`dropdown ${isDropdownOpen ? "show" : ""}`}>
-                            <Link
-                                to="/admin/categories"
-                                className={`d-flex align-items-center nav-link dropdown-toggle ${activeLink.includes("/admin/categories") ? "active" : ""}`}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    toggleDropdown();
-                                }}
-                                aria-expanded={isDropdownOpen ? "true" : "false"}
-                                id="categoriesDropdown"
+                        {/* Posts Dropdown */}
+                        <li className="nav-item dropdown">
+                            <a
+                                className="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
                                 data-bs-toggle="dropdown"
+                                aria-expanded="false"
                             >
-                                <i className="bi bi-folder-fill"></i>
-                                <span className="ms-1 d-none d-sm-inline">Categories</span>
-                            </Link>
-                            <ul
-                                className={`dropdown-menu dropdown-menu-dark text-small shadow ${isDropdownOpen ? "show" : ""
-                                    }`}
-                                aria-labelledby="categoriesDropdown"
-                            >
-                                <li>
-                                    <Link
-                                        className={`dropdown-item ${activeLink === "/admin/categories" ? "active" : ""}`}
-                                        to="/admin/categories"
-                                        onClick={() => handleLinkClick("/admin/categories")}
-                                    >
-                                        All Categories
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        className={`dropdown-item ${activeLink === "/admin/categories/new" ? "active" : ""}`}
-                                        to="/admin/categories/new"
-                                        onClick={() => handleLinkClick("/admin/categories/new")}
-                                    >
-                                        Add New
-                                    </Link>
-                                </li>
+                                <i className="fs-4 bi-card-heading me-2" />
+                                Posts
+                            </a>
+                            <ul className="dropdown-menu bg-dark-shine" aria-labelledby="navbarDropdownMenuLink">
+                                <li><Link className="dropdown-item" to="/admin/posts/new">Add New</Link></li>
+                                <li><Link className="dropdown-item" to="/admin/posts">All Posts</Link></li>
                             </ul>
-                        </div>
+                        </li>
 
                         {/* Inbox */}
                         <Link
@@ -102,6 +69,26 @@ function SideBar() {
                             <i className="bi bi-person-fill-gear" />{" "}
                             <span className="ms-1 d-none d-sm-inline">Accounts</span>
                         </Link>
+
+                    </li>
+
+                    {/* Categories Dropdown */}
+                    <li className="nav-item dropdown">
+                        <a
+                            className="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            <i className="bi bi-folder-fill me-2" />
+                            Categories
+                        </a>
+                        <ul className="dropdown-menu bg-dark-shine" aria-labelledby="navbarDropdownMenuLink">
+                            <li><Link className="dropdown-item" to="/admin/categories/new">Add New</Link></li>
+                            <li><Link className="dropdown-item" to="/admin/categories">All Categories</Link></li>
+                        </ul>
                     </li>
                 </ul>
             </div>

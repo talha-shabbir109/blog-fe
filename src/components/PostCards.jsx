@@ -64,7 +64,7 @@ function PostCards() {
                                 <Card
                                     key={index}
                                     imageSrc={post.image || null} // Replace with actual field name from API
-                                    category={post.category || null}
+                                    category={post.category?.name ?? null}
                                     title={post.title || null}
                                     authorImage={post.authorImage || null}
                                     authorName={post.authorName || null}
@@ -75,54 +75,6 @@ function PostCards() {
                     ) : (
                         <div>No posts available</div>
                     )}
-                    {/* <Card
-                        imageSrc={null} // Image will not appear
-                        category={null} // Badge will appear
-                        title="How Emerging Technologies Are Transforming Everyday Life" // Title will appear
-                        authorImage={null} // Author image will not appear
-                        authorName="Tracey Wilson" // Author name will appear
-                        date={null} // Date will not appear
-                    /> */}
-                    {/* <div className="col">
-                        <div className="card h-100 card-design text-white border border-1 border-dark">
-                            <div className="card-body rounded-3 gap-4">
-                                <img src={homecard2} className="card-img-top mb-2" alt="..." />
-                                <h4 className="badge badge-primary">Technology</h4>
-                                <h3 className="card-title">
-                                    How Emerging Technologies Are Transforming Everyday Life
-                                </h3>
-                            </div>
-                            <div className="card-footer">
-                                <div className="d-flex gap-2 justify-content-between align-items-center mt-auto">
-                                    <div className="d-flex gap-2 justify-content-between align-items-center">
-                                        <img src={autherCard2} alt="Auther" />
-                                        <span className>Jason Francisco</span>
-                                    </div>
-                                    <span>Date: August 20, 2024</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card h-100 card-design text-white border border-1 border-dark">
-                            <div className="card-body rounded-3 gap-4">
-                                <img src={homecard3} className="card-img-top mb-2" alt="..." />
-                                <h4 className="badge badge-primary">Technology</h4>
-                                <h3 className="card-title">
-                                    How Emerging Technologies Are Transforming Everyday Life
-                                </h3>
-                            </div>
-                            <div className="card-footer">
-                                <div className="d-flex gap-2 justify-content-between align-items-center mt-auto">
-                                    <div className="d-flex gap-2 justify-content-between align-items-center">
-                                        <img src={autherCard3} alt="Auther" />
-                                        <span className>Elizabeth Slavin</span>
-                                    </div>
-                                    <span>Date: August 20, 2024</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
             </div>
             <div className="d-grid gap-2 d-md-flex justify-content-center p-3">

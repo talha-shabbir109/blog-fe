@@ -15,27 +15,31 @@ const SignIn = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
 
+    // Checking if user is authenticated when the component loads
     useEffect(() => {
         const token = sessionStorage.getItem("authToken");
         if (token) {
+            // If token exists, navigate to the dashboard
             navigate("/admin");
         }
     }, [navigate]);
 
-
+    // Toggle password visibility
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
 
+    // Handle form input change
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
         if (error) setError(''); // Clear error on input change
     };
 
+    // Handle login form submission
     const handleLogin = useCallback((event) => {
         event.preventDefault();
 
-        // Define validateForm inside useCallback
+        // Simple form validation
         const validateForm = (email, password) => {
             if (!email || !password) {
                 return "Please enter a valid email and password.";
@@ -62,35 +66,16 @@ const SignIn = () => {
 
         axios.request(config)
             .then((response) => {
-                if (sessionStorage.getItem('authToken')) {
-                    sessionStorage.removeItem('authToken');
-                }
+                // Store token in sessionStorage
                 sessionStorage.setItem('authToken', response.data.authToken);
-                navigate('/admin');
+                // Reload the page to ensure state is updated
+                window.location.reload();
             })
             .catch((error) => {
                 console.error(error);
                 setError("Login failed. Please try again.");
             });
-    }, [formData, navigate]);  // No need for validateForm here, it's inside the callback now
-
-    const checkAuthToken = () => {
-        const token = sessionStorage.getItem("authToken");
-        if (!token) {
-            return false; // Token is not found, not authenticated
-        }
-        return true;
-    };
-
-    const isAuthenticated = checkAuthToken();
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            navigate("/admin");
-        } else {
-            navigate("/sign-in");
-        }
-    }, [isAuthenticated, navigate]);
+    }, [formData]);
 
     return (
         <div className="container w-50 vh-100 d-flex justify-content-center align-items-center">
@@ -122,7 +107,6 @@ const SignIn = () => {
                                 id="inputEmail4"
                                 className='form-control text-white bg-dark email-input'
                                 value={formData.email}
-                                // onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 onChange={handleInputChange}
                             />
                         </div>

@@ -18,6 +18,7 @@ import AllPostPage from "./admin/pages/AllPostPage";
 import Dashboard from "./admin/pages/Dashboard";
 import CategoryPage from "./admin/pages/CategoryPage";
 import NewCategoryPage from "./admin/pages/NewCategoryPage.jsx";
+import NewPostPage from "./admin/pages/NewPostPage.jsx";
 
 function App() {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -52,6 +53,7 @@ function App() {
 				>
 					<Route index element={<Dashboard />} />
 					<Route path="posts" element={<AllPostPage />} />
+					<Route path="posts/new" element={<NewPostPage />} />
 					{/* Updated categories route */}
 					<Route path="categories" element={<CategoryPage />} />
 					<Route path="categories/new" element={<NewCategoryPage />} />
